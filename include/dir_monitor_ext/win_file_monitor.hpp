@@ -1,7 +1,7 @@
 #ifndef WIN_FILE_MONITOR_HPP_
 #define WIN_FILE_MONITOR_HPP_
 
-#include "typedefs.hpp"
+#include "dir_monitor_ext/typedefs.hpp"
 #include <functional>
 #include <boost/asio.hpp>
 #include <dir_monitor/dir_monitor.hpp>

@@ -15,7 +15,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
 	INTERFACE
 		CONAN_PKG::dir_monitor
-		CONAN_PKG::Boost
+		CONAN_PKG::Boost.Asio
 )
 
 
@@ -25,7 +25,6 @@ add_executable(${PROJECT_NAME}_impl
 
 target_link_libraries(${PROJECT_NAME}_impl
 	CONAN_PKG::dir_monitor
-	CONAN_PKG::Boost
-	CONAN_PKG::jsonformoderncpp
+	CONAN_PKG::Boost.Asio
 	${PROJECT_NAME}
 )

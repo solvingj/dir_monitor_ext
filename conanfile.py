@@ -8,9 +8,8 @@ class DirMonitorCMakeConan(ConanFile):
     generators = "cmake"
     url = "https://github.com/bincrafters/dir_monitor_ext"
     exports_sources = "include/*"
-    requires = "jsonformoderncpp/2.1.1@vthiery/stable", \
-        "dir_monitor/1.0.0@bincrafters/testing", \
-        "Boost/1.62.0@lasote/stable", \
+    requires = "dir_monitor/1.0.0@bincrafters/testing", \
+        "Boost.Asio/1.64.0@bincrafters/testing", \
         #"Boost/1.64.0@conan/stable", \
 
     def package(self):

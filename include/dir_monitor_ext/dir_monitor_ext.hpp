@@ -1,8 +1,8 @@
 #ifndef DIR_MONITOR_EXT_HPP_
 #define DIR_MONITOR_EXT_HPP_
 
-#include <win_dir_manager.hpp>
-#include <typedefs.hpp>
-#include <win_file_monitor.hpp>
-
+#include <dir_monitor_ext/win_dir_manager.hpp>
+#include <dir_monitor_ext/typedefs.hpp>
+#include <dir_monitor_ext/win_file_monitor.hpp>
+namespace dir_monitor_ext {}
 #endif

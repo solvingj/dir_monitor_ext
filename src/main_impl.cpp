@@ -1,6 +1,4 @@
-#include "dir_monitor_ext/win_dir_manager.hpp"
-#include "dir_monitor_ext/win_file_monitor.hpp"
-#include "dir_monitor_ext/typedefs.hpp"
+#include "dir_monitor_ext/dir_monitor_ext.hpp"
 #include <fstream>
 #include <iostream>
 #include <thread>

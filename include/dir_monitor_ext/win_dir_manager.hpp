@@ -1,8 +1,8 @@
 #ifndef WIN_DIR_MANAGER_HPP_
 #define WIN_DIR_MANAGER_HPP_
 
-#include "typedefs.hpp"
-#include "win_file_monitor.hpp"
+#include "dir_monitor_ext/typedefs.hpp"
+#include "dir_monitor_ext/win_file_monitor.hpp"
 #include <set>
 #include <iostream>
 #include <algorithm>
@@ -26,6 +26,7 @@ namespace dir_monitor_ext
     {
       dm.add_directory(directory);
     }
+
 
     void add_file_monitor(win_file_monitor fm)
     {
