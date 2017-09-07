@@ -2,7 +2,7 @@ from conans import ConanFile
 
 class DirMonitorCMakeConan(ConanFile):
     name = "dir_monitor_ext"
-    version = "0.0.1"
+    version = "0.1.0"
     description = "Extensions to the dir_monitor library"
     author = "Solvingj"
     generators = "cmake"
