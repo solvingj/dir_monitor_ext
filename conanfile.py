@@ -9,7 +9,7 @@ class DirMonitorCMakeConan(ConanFile):
     url = "https://github.com/bincrafters/dir_monitor_ext"
     exports_sources = "include/*"
     requires = "dir_monitor/1.0.0@bincrafters/testing", \
-        "Boost.Asio/1.64.0@bincrafters/testing", \
+        "Boost.Asio/1.64.0@bincrafters/stable", \
         #"Boost/1.64.0@conan/stable", \
 
     def package(self):

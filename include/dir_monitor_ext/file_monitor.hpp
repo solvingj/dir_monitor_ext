@@ -1,5 +1,5 @@
-#ifndef WIN_FILE_MONITOR_HPP_
-#define WIN_FILE_MONITOR_HPP_
+#ifndef FILE_MONITOR_HPP_
+#define FILE_MONITOR_HPP_
 
 #include "dir_monitor_ext/typedefs.hpp"
 #include <functional>
@@ -8,23 +8,23 @@
 
 namespace dir_monitor_ext
 {
-  class win_file_monitor
+  class file_monitor
   {
   public:
     std::string filename;
     file_change_action action;
     condition_for_action condition;
 
-    win_file_monitor(
+    file_monitor(
       std::string filename,
       file_change_action action,
       condition_for_action condition) :
       filename(filename), action(action), condition(condition) {}
 
-    win_file_monitor(
+    file_monitor(
       std::string filename,
       file_change_action action) :
-      win_file_monitor(filename, action, default_name_condition(filename)) {}
+      file_monitor(filename, action, default_name_condition(filename)) {}
 
     condition_for_action default_name_condition(std::string & filename)
     {

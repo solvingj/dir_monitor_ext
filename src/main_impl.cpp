@@ -21,18 +21,18 @@ int main(int argc, char * argv[])
   bfs::path file(name);
   bfs::save_string_file(file, "starting content\n");
 
-  dme::win_dir_manager wdm(bfs::absolute(file).parent_path().string(), io_service);
+  dme::dir_manager dm(bfs::absolute(file).parent_path().string(), io_service);
   
   dme::file_change_action fca([](bs::error_code ec, ba::dir_monitor_event dme)
   {
     std::cout << dme.path.filename().string() << " was changed and matched condition" << std::endl;
   });
 
-  dme::win_file_monitor fm(name, fca);
+  dme::file_monitor fm(name, fca);
 
-  wdm.add_file_monitor(fm);
+  dm.add_file_monitor(fm);
 
-  wdm.start();
+  dm.start();
 
   std::thread ios_thread([&]
   {
@@ -40,8 +40,8 @@ int main(int argc, char * argv[])
   });
 
   std::string input;
-  std::cout << "Directory Monitored: " << wdm.directory << std::endl;
-  std::cout << "File Monitored: " << bfs::absolute(bfs::path(wdm.file_monitors.begin()->first)) << std::endl;
+  std::cout << "Directory Monitored: " << dm.directory << std::endl;
+  std::cout << "File Monitored: " << bfs::absolute(bfs::path(dm.file_monitors.begin()->first)) << std::endl;
   std::cout << "Available Commands: change_file, quit" << std::endl;
 
   while (getline(std::cin, input) && input != "quit")
