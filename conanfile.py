@@ -5,6 +5,7 @@ class DirMonitorCMakeConan(ConanFile):
     version = "0.1.0"
     description = "Extensions to the dir_monitor library"
     generators = "cmake"
+    license = "www.boost.org/license_1_0.txt"
     url = "https://github.com/bincrafters/dir_monitor_ext"
     exports_sources = "include/*"
     requires = "dir_monitor/1.0.0@bincrafters/stable", \
