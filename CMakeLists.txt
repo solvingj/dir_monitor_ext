@@ -27,5 +27,6 @@ target_link_libraries(${PROJECT_NAME}_impl
 	CONAN_PKG::dir_monitor
 	CONAN_PKG::Boost.Asio
 	CONAN_PKG::Boost.Regex
+	CONAN_PKG::Boost.Log
 	${PROJECT_NAME}
 )

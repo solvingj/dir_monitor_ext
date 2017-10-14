@@ -1,24 +1,19 @@
-from conans import ConanFile, CMake
+from conans import ConanFile, CMake, tools, RunEnvironment
 import os
 
 
-class Dir_Monitor_Ext_TestConan(ConanFile):
+class TestPackageConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    channel = os.getenv("CONAN_CHANNEL", "testing")
-    username = os.getenv("CONAN_USERNAME", "bincrafters")
     generators = "cmake"
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure(build_dir="./")
+        cmake.configure()
         cmake.build()
-
-    def imports(self):
-        self.copy("*.so*", dst="bin", src="bin")
-        self.copy("*.dll", dst="bin", src="bin")
-        self.copy("*.dylib*", dst="bin", src="lib")
-
+        
     def test(self):
-        cmake = CMake(self)
-        cmake.configure(build_dir="./")
-        cmake.test()
+        with tools.environment_append(RunEnvironment(self).vars):
+            if self.settings.os == "Windows":
+                self.run(os.path.join("bin","test_package"))
+            else:
+                self.run("DYLD_LIBRARY_PATH=%s %s"%(os.environ['DYLD_LIBRARY_PATH'],os.path.join("bin","test_package")))

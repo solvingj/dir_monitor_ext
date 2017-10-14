@@ -20,37 +20,34 @@ int main(int argc, char * argv[])
   std::string name("test_file.txt");
   bfs::path file(name);
   bfs::save_string_file(file, "starting content\n");
-
-  dme::dir_manager dm(bfs::absolute(file).parent_path().string(), io_service);
   
   dme::file_change_action fca([](bs::error_code ec, ba::dir_monitor_event dme)
   {
     std::cout << dme.path.filename().string() << " was changed and matched condition" << std::endl;
   });
 
-  dme::file_monitor fm(name, fca);
+  dme::file_trigger ft(bfs::absolute(file).string(), fca);
 
-  dm.add_file_monitor(fm);
+  dme::file_monitor fm(ft, io_service);
 
-  dm.start();
+  fm.start();
 
   std::thread ios_thread([&]
   {
     io_service.run();
   });
 
-  std::string input;
-  std::cout << "Directory Monitored: " << dm.directory << std::endl;
-  std::cout << "File Monitored: " << bfs::absolute(bfs::path(dm.file_monitors.begin()->first)) << std::endl;
-  std::cout << "Available Commands: change_file, quit" << std::endl;
+  std::cout << "File Monitored: " << ft.absolute_file_path << std::endl;
+  std::cout << "Available Commands: modify_file_contents, quit" << std::endl;
 
+  std::string input;
   while (getline(std::cin, input) && input != "quit")
   {
-    if (input == "change_file")
+    if (input == "modify_file_contents")
     {
       std::cout << "Changing File" << std::endl;
-      std::ifstream input(name);
-      std::ofstream output(name, std::ofstream::out | std::ofstream::app);
+      std::ifstream input(ft.absolute_file_path);
+      std::ofstream output(ft.absolute_file_path, std::ofstream::out | std::ofstream::app);
       output << input.rdbuf() << std::endl << "new content" << std::endl;
     }
     else
